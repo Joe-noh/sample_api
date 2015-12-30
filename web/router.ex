@@ -7,5 +7,7 @@ defmodule SampleAPI.Router do
 
   scope "/api", SampleAPI do
     pipe_through :api
+
+    resources "/users", UserController, expect: [:new, :edit]
   end
 end
