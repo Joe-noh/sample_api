@@ -18,13 +18,21 @@ defmodule SampleAPI.Web do
 
   def model do
     quote do
-      # Define common model functionality
+      use Ecto.Schema
+
+      import Ecto
+      import Ecto.Changeset
+      import Ecto.Query, only: [from: 1, from: 2]
     end
   end
 
   def controller do
     quote do
       use Phoenix.Controller, namespace: SampleAPI
+
+      alias SampleAPI.Repo
+      import Ecto
+      import Ecto.Query, only: [from: 1, from: 2]
 
       import SampleAPI.Router.Helpers
       import SampleAPI.Gettext
@@ -53,6 +61,10 @@ defmodule SampleAPI.Web do
   def channel do
     quote do
       use Phoenix.Channel
+
+      alias SampleAPI.Repo
+      import Ecto
+      import Ecto.Query, only: [from: 1, from: 2]
       import SampleAPI.Gettext
     end
   end

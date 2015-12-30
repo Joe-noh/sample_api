@@ -20,6 +20,10 @@ defmodule SampleAPI.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
+      alias SampleAPI.Repo
+      import Ecto.Model
+      import Ecto.Query, only: [from: 2]
+
       import SampleAPI.Router.Helpers
 
       # The default endpoint for testing
@@ -28,6 +32,9 @@ defmodule SampleAPI.ConnCase do
   end
 
   setup tags do
+    unless tags[:async] do
+      Ecto.Adapters.SQL.restart_test_transaction(SampleAPI.Repo, [])
+    end
 
     {:ok, conn: Phoenix.ConnTest.conn()}
   end

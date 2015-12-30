@@ -31,7 +31,7 @@ defmodule SampleAPI.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_sample_api_key",
-    signing_salt: "GasVkorQ"
+    signing_salt: "Jj8UhNcy"
 
   plug SampleAPI.Router
 end

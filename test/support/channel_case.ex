@@ -20,6 +20,10 @@ defmodule SampleAPI.ChannelCase do
       # Import conveniences for testing with channels
       use Phoenix.ChannelTest
 
+      alias SampleAPI.Repo
+      import Ecto.Model
+      import Ecto.Query, only: [from: 2]
+
 
       # The default endpoint for testing
       @endpoint SampleAPI.Endpoint
@@ -27,6 +31,9 @@ defmodule SampleAPI.ChannelCase do
   end
 
   setup tags do
+    unless tags[:async] do
+      Ecto.Adapters.SQL.restart_test_transaction(SampleAPI.Repo, [])
+    end
 
     :ok
   end

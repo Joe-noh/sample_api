@@ -21,3 +21,9 @@ config :logger, :console, format: "[$level] $message\n"
 # Do not configure such in production as keeping
 # and calculating stacktraces is usually expensive.
 config :phoenix, :stacktrace_depth, 20
+
+# Configure your database
+config :sample_api, SampleAPI.Repo,
+  adapter: Sqlite.Ecto,
+  database: "db/sample_api_dev.sqlite",
+  pool_size: 10

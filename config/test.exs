@@ -8,3 +8,9 @@ config :sample_api, SampleAPI.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+# Configure your database
+config :sample_api, SampleAPI.Repo,
+  adapter: Sqlite.Ecto,
+  database: "db/sample_api_test.sqlite",
+  pool: Ecto.Adapters.SQL.Sandbox
